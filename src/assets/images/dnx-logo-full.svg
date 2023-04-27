@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1126 282.2">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        letter-spacing: -.04em;
+      }
+
+      .cls-3 {
+        fill: none;
+        font-family: Lequire-Regular, Lequire;
+        font-size: 172px;
+      }
+
+      .cls-4 {
+        fill: #e20b4c;
+      }
+
+      .cls-5 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-6 {
+        letter-spacing: 0em;
+      }
+    </style>
+    <clipPath id="clippath">
+      <text class="cls-3" transform="translate(50 211.2)"><tspan x="0" y="0">DUNG</tspan><tspan class="cls-2" x="489.85" y="0">E</tspan><tspan class="cls-6" x="583.25" y="0">Onex</tspan></text>
+    </clipPath>
+  </defs>
+  <g class="cls-5">
+    <rect class="cls-1" y="14.2" width="769" height="268"/>
+    <rect class="cls-4" x="778.45" width="347.55" height="282.2"/>
+  </g>
+</svg>

@@ -1,5 +1,10 @@
 <template>
-  <router-view/>
+  <div>
+    <div class="version">
+      Alpha 0.1
+    </div>
+    <router-view/>
+  </div>
 </template>
 
 <style lang="scss">
@@ -8,7 +13,7 @@
     --color-black: #1f1f1f;
     --color-black-light: #2b2b2b;
     --color-white: #FFF;
-    --color-primary: #000;
+    --color-primary: #e20b4c;
 
     --border-radius: 15px;
   }
@@ -54,6 +59,14 @@
     #app {
       padding: 2rem;
     }
+    .version {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 200;
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.5);
+    }
     .p-st {
       padding: 2rem;
     }
@@ -63,13 +76,43 @@
       margin-bottom: 2rem;
       color: var(--color-white);
     }
+    .button {
+      display: block !important;
+      width: 100% !important;
+      border: none;
+      border-radius: var(--border-radius);
+      padding: 1rem 2rem;
+      cursor: pointer;
+    }
     .button-primary {
-      background-color: var(--color-primary);
-      color: var(--color-white);
+      background-color: var(--color-primary) !important;
+      color: var(--color-white) !important;
+      cursor: pointer;
     }
     .button-secondary {
-      background-color: var(--color-white);
+      background-color: var(--color-white) !important;
       color: var(--color-primary) !important;
+      cursor: pointer;
+    }
+    .button-group-toggle {
+      .button-group-button {
+        background: none;
+        border: 1px solid var(--color-primary);
+        color: var(--color-white);
+        padding: 1rem 2rem;
+        cursor: pointer;
+        &.active {
+          background-color: var(--color-primary);
+        }
+        &.button-left {
+          border-top-left-radius: var(--border-radius);
+          border-bottom-left-radius: var(--border-radius);
+        }
+        &.button-right {
+          border-top-right-radius: var(--border-radius);
+          border-bottom-right-radius: var(--border-radius);
+        }
+      }
     }
     .dash-action-button {
       border: none;
@@ -79,6 +122,9 @@
       position: absolute;
       top: 2rem;
       right: 2rem;
+    }
+    .error {
+      color: red;
     }
   }
 </style>

@@ -16,6 +16,9 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'dashboard',
     component: DashboardView,
+    meta: {
+      requiresAuth: true,
+    },
     children: [
       {
         path: 'campaigns',
@@ -44,6 +47,19 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  console.log('localStorage: ', localStorage);
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!localStorage.getItem('auth-token')) {
+      next({ name: 'login' })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
 })
 
 export default router
