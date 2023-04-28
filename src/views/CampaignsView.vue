@@ -5,11 +5,17 @@
             <font-awesome-icon :icon="['fas', 'plus']" />
         </button>
         <div class="dash-view-content">
-            <ul class="campaigns-list">
-                <li class="campaign-list-item">
-                    <CampaignSummary></CampaignSummary>
+            <ul class="campaigns-list" v-if="globalStore.getCampaigns">
+                <li class="campaign-list-item" v-for="(campaign, id) of globalStore.getCampaigns" :key="id">
+                    <CampaignSummary @click="navToCampaign(campaign.id)" :campaign="campaign"></CampaignSummary>
                 </li>
             </ul>
+            <h2 v-if="!globalStore.getCampaigns?.length && !globalStore.getLoadingCampaigns">
+                No Campaigns
+            </h2>
+            <div v-if="globalStore.getLoadingCampaigns">
+                Loading
+            </div>
         </div>
     </div>
 </template>
@@ -30,6 +36,21 @@
         },
         components: {
             CampaignSummary,
+        },
+        methods: {
+            navToCampaign(id: number): void {
+                this.$router.push(`/campaign-details/${id}`);
+            }
         }
     })
 </script>
+
+<style lang="scss">
+    @media screen and (min-width: 0px) {
+        .campaigns-view {
+            h2 {
+                text-align: center;
+            }
+        }
+    }
+</style>

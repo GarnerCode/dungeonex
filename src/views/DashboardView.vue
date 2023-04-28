@@ -21,6 +21,9 @@
     },
     components: {
       Navbar,
+    },
+    mounted() {
+      this.globalStore.fetchCampaigns();
     }
   });
 </script>

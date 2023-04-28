@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { supabase } from '@/lib/supabaseClient';
 
 export const useGlobalStore = defineStore({
     id: 'GlobalStore',
@@ -6,6 +7,9 @@ export const useGlobalStore = defineStore({
         userData: null,
         modalToggled: false,
         activeModalType: '',
+        campaigns: null as any,
+        loadingCampaigns: true,
+        characters: null as any,
     }),
     getters: {
         getUserData: (state): any => {
@@ -16,6 +20,12 @@ export const useGlobalStore = defineStore({
         },
         getActiveModalType: (state): string => {
             return state.activeModalType;
+        },
+        getCampaigns: (state): any => {
+            return state.campaigns;
+        },
+        getLoadingCampaigns: (state): boolean => {
+            return state.loadingCampaigns;
         },
     },
     actions: {
@@ -30,5 +40,16 @@ export const useGlobalStore = defineStore({
             this.activeModalType = '';
             this.modalToggled = false;
         },
+        async fetchCampaigns(): Promise<void> {
+            const { data, error } = await supabase
+            .from('campaigns')
+            .select()
+            .eq('email', this.getUserData.email);
+            if (data) {
+                this.campaigns = data;
+                this.loadingCampaigns = false;
+                console.log('data: ', data);
+            }
+        }
     }
 })

@@ -6,6 +6,9 @@ import CampaignsView from '@/views/CampaignsView.vue'
 import CharactersView from '@/views/CharactersView.vue'
 import EncountersView from '@/views/EncountersView.vue'
 import SettingsView from '@/views/SettingsView.vue'
+
+import CampaignDetailsViewVue from '@/views/CampaignDetailsView.vue'
+
 import { supabase } from '@/lib/supabaseClient'
 
 const routes: Array<RouteRecordRaw> = [
@@ -46,6 +49,11 @@ const routes: Array<RouteRecordRaw> = [
         path: 'settings',
         name: 'settings',
         component: SettingsView,
+      },
+      {
+        path: 'campaign-details/:id',
+        name: 'campaign-details',
+        component: CampaignDetailsViewVue,
       },
     ]
   },

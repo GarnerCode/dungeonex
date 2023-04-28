@@ -28,8 +28,14 @@
       const { data: { session } } = await supabase.auth.getSession();
       if (session) {
         this.globalStore.setUserData(session.user);
+        this.fetchAllData();
       } else {
         this.$router.push('/login');
+      }
+    },
+    methods: {
+      fetchAllData(): void {
+        this.globalStore.fetchCampaigns();
       }
     }
   })
@@ -74,6 +80,13 @@
   }
   h1, h2, h3 {
     margin: 0;
+    color: var(--color-white);
+  }
+  h2 {
+    font-size: 2.5rem;
+  }
+  h3 {
+    font-size: 2.25rem;
   }
   p {
     font-size: 16px;
@@ -154,6 +167,16 @@
       position: absolute;
       top: 2rem;
       right: 2rem;
+    }
+    .form-input {
+      font-size: 16px;
+      background-color: var(--color-black-light);
+      color: var(--color-white);
+      padding: 1rem 2rem;
+      border: none;
+      &:focus {
+        outline: none;
+      }
     }
     .error {
       color: red;

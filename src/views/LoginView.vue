@@ -144,11 +144,6 @@
                     margin: 2rem 0;
                 }
                 .form-input {
-                    border: none;
-                    background-color: var(--color-black-light);
-                    font-size: 16px;
-                    padding: 1rem 2rem;
-                    color: var(--color-white);
                     width: calc(100% - 4rem);
                 }
             }

@@ -1,8 +1,8 @@
 <template>
-    <div class="campaign-summary">
+    <div class="campaign-summary" v-if="campaign">
         <div class="campaign-summary-color-code"></div>
         <div class="campaign-summary-title">
-            Rise of Tiamat
+            {{ campaign.title }}
         </div>
     </div>
 </template>
@@ -12,6 +12,11 @@
 
     export default defineComponent({
         name: 'CampaignSummary',
+        props: {
+            campaign: {
+                type: Object,
+            }
+        },
     })
 </script>
 
