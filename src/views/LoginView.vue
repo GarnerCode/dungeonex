@@ -20,9 +20,6 @@
                 <input class="button button-primary" type="submit" value="Login">
             </div>
         </form>
-        <div class="error" v-if="supaErrorMsg.length">
-            {{ supaErrorMsg }}
-        </div>
         <form @submit="(e) => handleSignup(e)" class="login-view-form" v-if="toggleSignup">
             <div class="field">
                 <label for="userEmail">Email</label>
@@ -43,18 +40,25 @@
                 <input class="button button-primary" type="submit" value="Signup">
             </div>
         </form>
+        <div class="error" v-if="supaErrorMsg.length">
+            {{ supaErrorMsg }}
+        </div>
     </div>
 </template>
 
 <script lang="ts">
     import { supabase } from '@/lib/supabaseClient';
     import { defineComponent } from 'vue';
+    import { useGlobalStore } from '@/store/globalStore';
+    import { ModalTypesEnum } from '@/enum/ModalTypes.enum';
 
     export default defineComponent({
         name: 'LoginView',
         data() {
             return {
+                globalStore: useGlobalStore(),
                 toggleSignup: false,
+                modalTypes: ModalTypesEnum,
                 loginFormData: {
                     email: '',
                     password: '',
@@ -67,6 +71,14 @@
                 supaErrorMsg: '',
             }
         },
+        async mounted() {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (session) {
+                console.log('session: ', session);
+                this.globalStore.setUserData(session.user);
+                this.$router.push('/');
+            }
+        },
         methods: {
             async handleLogin(e: any) {
                 e.preventDefault();
@@ -76,7 +88,13 @@
                     const { data, error } = await supabase.auth.signInWithPassword({
                         email: this.loginFormData.email,
                         password: this.loginFormData.password
-                    })
+                    });
+                    if (data.session) {
+                        this.globalStore.setUserData(data.session.user);
+                        this.$router.push('/');
+                    } else if (error) {
+                        this.supaErrorMsg = 'Email or Password is incorrect.';
+                    }
                 }
             },
             async handleSignup(e: any) {
@@ -90,13 +108,13 @@
                     const { data, error } = await supabase.auth.signUp({
                         email: this.signupFormData.email,
                         password: this.signupFormData.password
-                    })
+                    });
                     if (error) {
                         this.supaErrorMsg = error.message;
                     } else if (!data.user?.identities?.length) {
                         this.supaErrorMsg = "Account already exists with this email."
                     } else {
-                        alert('Thank you! Please check your email for a confirmation link!');
+                        this.globalStore.openModal(true, this.modalTypes.SIGNUP_CONFIRMATION);
                     }
                 }
             },

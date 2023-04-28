@@ -3,9 +3,37 @@
     <div class="version">
       Alpha 0.1
     </div>
+    <Modal v-if="globalStore.getModalToggled"></Modal>
     <router-view/>
   </div>
 </template>
+
+<script lang="ts">
+  import { defineComponent } from 'vue';
+  import { useGlobalStore } from './store/globalStore';
+  import Modal from '@/components/Modal.vue';
+import { supabase } from '@/lib/supabaseClient';
+
+  export default defineComponent({
+    name: 'App',
+    data() {
+      return {
+        globalStore: useGlobalStore(),
+      }
+    },
+    components: {
+      Modal,
+    },
+    async mounted() {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        this.globalStore.setUserData(session.user);
+      } else {
+        this.$router.push('/login');
+      }
+    }
+  })
+</script>
 
 <style lang="scss">
   @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
@@ -46,6 +74,10 @@
   }
   h1, h2, h3 {
     margin: 0;
+  }
+  p {
+    font-size: 16px;
+    color: var(--color-white);
   }
   ul {
     list-style: none;

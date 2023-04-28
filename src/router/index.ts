@@ -1,10 +1,12 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import LoginView from '@/views/LoginView.vue'
 import DashboardView from '@/views/DashboardView.vue'
+import HomeView from '@/views/HomeView.vue'
 import CampaignsView from '@/views/CampaignsView.vue'
 import CharactersView from '@/views/CharactersView.vue'
 import EncountersView from '@/views/EncountersView.vue'
 import SettingsView from '@/views/SettingsView.vue'
+import { supabase } from '@/lib/supabaseClient'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -20,6 +22,11 @@ const routes: Array<RouteRecordRaw> = [
       requiresAuth: true,
     },
     children: [
+      {
+        path: '',
+        name: 'home',
+        component: HomeView,
+      },
       {
         path: 'campaigns',
         name: 'campaigns',
@@ -49,10 +56,10 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  console.log('localStorage: ', localStorage);
+router.beforeEach(async (to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!localStorage.getItem('auth-token')) {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) {
       next({ name: 'login' })
     } else {
       next()

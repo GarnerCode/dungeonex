@@ -3,7 +3,10 @@
         <ul class="nav-list">
             <li class="nav-item" v-for="(nav, index) of navData" :key="index">
                 <router-link class="nav-link" :to="nav.route">
-                    <font-awesome-icon class="nav-icon" :icon="nav.icon" />
+                    <font-awesome-icon 
+                    class="nav-icon" 
+                    :class="{'active-route': $route.name === nav.label.toLocaleLowerCase()}" 
+                    :icon="nav.icon" />
                     <div class="nav-label">
                         {{ nav.label }}
                     </div>
@@ -23,7 +26,7 @@
             return {
                 navData,
             }
-        }
+        },
     })
 </script>
 
@@ -55,6 +58,9 @@
             }
             .nav-icon {
                 font-size: 3rem;
+                &.active-route {
+                    color: var(--color-primary);
+                }
             }
             .nav-label {
                 display: none;

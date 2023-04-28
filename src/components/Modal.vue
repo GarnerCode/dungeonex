@@ -1,10 +1,10 @@
 <template>
     <div class="modal-overlay">
-        <button @click="globalStore.setModalToggled(false)" class="dash-action-button button-secondary">
+        <button @click="globalStore.closeModal()" class="dash-action-button button-secondary">
             <font-awesome-icon :icon="['fas', 'xmark']" />
         </button>
         <div class="modal">
-            <h1>Modal</h1>
+            <ModalConfirmSignup v-if="globalStore.getActiveModalType === modalTypes.SIGNUP_CONFIRMATION"></ModalConfirmSignup>
         </div>
     </div>
 </template>
@@ -12,14 +12,20 @@
 <script lang="ts">
     import { defineComponent } from 'vue';
     import { useGlobalStore } from '@/store/globalStore';
+    import { ModalTypesEnum } from '@/enum/ModalTypes.enum';
+    import ModalConfirmSignup from './ModalConfirmSignup.vue';
 
     export default defineComponent({
         name: 'Modal',
         data() {
             return {
                 globalStore: useGlobalStore(),
+                modalTypes: ModalTypesEnum,
             }
-        }
+        },
+        components: {
+            ModalConfirmSignup,
+        },
     })
 </script>
 
@@ -43,6 +49,7 @@
                 padding: 2rem;
                 border-radius: var(--border-radius);
                 color: var(--color-white);
+                width: 40rem;
             }
         }
     }

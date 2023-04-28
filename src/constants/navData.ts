@@ -1,5 +1,10 @@
 export const navData = [
     {
+        label: 'Home',
+        icon: ['fas', 'house'],
+        route: '/',
+    },
+    {
         label: 'Campaigns',
         icon: ['fas', 'book'],
         route: '/campaigns',
