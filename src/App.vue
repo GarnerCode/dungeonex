@@ -12,7 +12,7 @@
   import { defineComponent } from 'vue';
   import { useGlobalStore } from './store/globalStore';
   import Modal from '@/components/Modal.vue';
-import { supabase } from '@/lib/supabaseClient';
+  import { supabase } from '@/lib/supabaseClient';
 
   export default defineComponent({
     name: 'App',
@@ -37,6 +37,10 @@ import { supabase } from '@/lib/supabaseClient';
 
 <style lang="scss">
   @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+  @font-face {
+    font-family: 'Lequire-Regular';
+    src: url('@/assets/fonts/Lequire.otf') format('opentype');
+  }
   :root {
     --color-black: #1f1f1f;
     --color-black-light: #2b2b2b;
