@@ -114,7 +114,7 @@
                     } else if (!data.user?.identities?.length) {
                         this.supaErrorMsg = "Account already exists with this email."
                     } else {
-                        this.globalStore.openModal(true, this.modalTypes.SIGNUP_CONFIRMATION);
+                        this.globalStore.openModal(this.modalTypes.SIGNUP_CONFIRMATION);
                     }
                 }
             },

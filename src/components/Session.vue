@@ -2,6 +2,7 @@
     <div class="session" v-if="session">
         <div class="session-header">
             <h3 class="session-title">{{ session.title }}</h3>
+            <font-awesome-icon @click="handleDeleteSessionClick()" :icon="['fas', 'trash']" />
         </div>
         <hr>
         <p class="session-summary">{{ session.summary }}</p>
@@ -10,14 +11,28 @@
 
 <script lang="ts">
     import { defineComponent } from 'vue';
+    import { useGlobalStore } from '@/store/globalStore';
+    import { ModalTypesEnum } from '@/enum/ModalTypes.enum';
 
     export default defineComponent({
         name: 'Session',
+        data() {
+            return {
+                globalStore: useGlobalStore(),
+                modalTypes: ModalTypesEnum,
+            }
+        },
         props: {
             session: {
                 type: Object,
             }
         },
+        methods: {
+            handleDeleteSessionClick(): void {
+                this.globalStore.setTargetSession(this.session);
+                this.globalStore.openModal(this.modalTypes.DELETE_SESSION);
+            }
+        }
     })
 </script>
 
@@ -27,6 +42,14 @@
             background-color: var(--color-black-light);
             padding: 2rem;
             border-radius: var(--border-radius);
+            .session-header {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            svg {
+                color: var(--color-white);
+            }
             hr {
                 border: 1px solid var(--color-black);
             }

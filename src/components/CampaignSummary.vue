@@ -1,6 +1,5 @@
 <template>
     <div class="campaign-summary" v-if="campaign">
-        <div class="campaign-summary-color-code"></div>
         <div class="campaign-summary-title">
             {{ campaign.title }}
         </div>

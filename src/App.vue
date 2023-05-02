@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="version">
-      Alpha 0.1
+      Alpha 0.2
     </div>
     <Modal v-if="globalStore.getModalToggled"></Modal>
     <router-view/>
@@ -136,8 +136,13 @@
     }
     .button-secondary {
       background-color: var(--color-white) !important;
-      color: var(--color-primary) !important;
+      color: var(--color-black) !important;
       cursor: pointer;
+    }
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
     }
     .button-group-toggle {
       .button-group-button {

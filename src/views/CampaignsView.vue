@@ -1,7 +1,7 @@
 <template>
     <div class="campaigns-view dash-view">
         <h1 class="dash-view-header">Campaigns</h1>
-        <button @click="globalStore.openModal(true, modalTypes.ADD_CAMPAIGN)" class="dash-action-button button-primary">
+        <button @click="globalStore.openModal(modalTypes.ADD_CAMPAIGN)" class="dash-action-button button-primary">
             <font-awesome-icon :icon="['fas', 'plus']" />
         </button>
         <div class="dash-view-content">
@@ -50,6 +50,11 @@
         .campaigns-view {
             h2 {
                 text-align: center;
+            }
+            .campaigns-list {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
             }
         }
     }

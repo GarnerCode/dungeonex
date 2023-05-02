@@ -10,6 +10,8 @@ export const useGlobalStore = defineStore({
         campaigns: null as any,
         loadingCampaigns: true,
         characters: null as any,
+
+        targetSession: null as any,
     }),
     getters: {
         getUserData: (state): any => {
@@ -27,18 +29,29 @@ export const useGlobalStore = defineStore({
         getLoadingCampaigns: (state): boolean => {
             return state.loadingCampaigns;
         },
+        getTargetSession: (state): any => {
+            return state.targetSession;
+        },
     },
     actions: {
         setUserData(payload: any): void {
             this.userData = payload;
         },
-        openModal(toggle: boolean, modalType: string): void {
+        openModal(modalType: string): void {
             this.activeModalType = modalType;
-            this.modalToggled = toggle;
+            this.modalToggled = true;
         },
         closeModal(): void {
             this.activeModalType = '';
             this.modalToggled = false;
+        },
+        getCampaignById(id: number | string | string[]): any {
+            return this.getCampaigns.find((campaign: any) => {
+                return campaign.id == id;
+            });
+        },
+        setTargetSession(payload: any): void {
+            this.targetSession = payload;
         },
         async fetchCampaigns(): Promise<void> {
             const { data, error } = await supabase
