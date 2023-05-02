@@ -4,10 +4,6 @@
 
 [Live App](https://dungeonex.vercel.app/login)
 
-Try out DungeoNex with the demo login!
-- demo@garnercode.io
-- demo123
-
 ## Features
 
 ### Campaigns
