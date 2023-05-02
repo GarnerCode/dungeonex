@@ -9,6 +9,7 @@
             <ModalEditCampaign v-if="globalStore.getActiveModalType === modalTypes.EDIT_CAMPAIGN"></ModalEditCampaign>
             <ModalDeleteCampaign v-if="globalStore.getActiveModalType === modalTypes.DELETE_CAMPAIGN"></ModalDeleteCampaign>
             <ModalAddSession v-if="globalStore.getActiveModalType === modalTypes.ADD_SESSION"></ModalAddSession>
+            <ModalEditSession v-if="globalStore.getActiveModalType === modalTypes.EDIT_SESSION"></ModalEditSession>
             <ModalDeleteSession v-if="globalStore.getActiveModalType === modalTypes.DELETE_SESSION"></ModalDeleteSession>
         </div>
     </div>
@@ -24,6 +25,7 @@
     import ModalEditCampaign from './ModalEditCampaign.vue';
     import ModalDeleteCampaign from './ModalDeleteCampaign.vue';
     import ModalAddSession from './ModalAddSession.vue';
+    import ModalEditSession from './ModalEditSession.vue';
     import ModalDeleteSession from './ModalDeleteSession.vue';
 
     export default defineComponent({
@@ -40,6 +42,7 @@
             ModalEditCampaign,
             ModalDeleteCampaign,
             ModalAddSession,
+            ModalEditSession,
             ModalDeleteSession,
         },
     })

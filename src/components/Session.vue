@@ -2,7 +2,7 @@
     <div class="session" v-if="session">
         <div class="session-header">
             <h3 class="session-title">{{ session.title }}</h3>
-            <font-awesome-icon @click="handleDeleteSessionClick()" :icon="['fas', 'trash']" />
+            <font-awesome-icon @click="handleEditSessionClick()" :icon="['fas', 'pen-to-square']" />
         </div>
         <hr>
         <p class="session-summary">{{ session.summary }}</p>
@@ -28,9 +28,9 @@
             }
         },
         methods: {
-            handleDeleteSessionClick(): void {
+            handleEditSessionClick(): void {
                 this.globalStore.setTargetSession(this.session);
-                this.globalStore.openModal(this.modalTypes.DELETE_SESSION);
+                this.globalStore.openModal(this.modalTypes.EDIT_SESSION);
             }
         }
     })

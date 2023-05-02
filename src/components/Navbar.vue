@@ -33,7 +33,7 @@
 <style lang="scss">
     @media screen and (min-width: 0px) {
         nav {
-            background-color: var(--color-black-light);
+            background-color: var(--color-black-dark);
             padding: 1rem 2rem;
             position: fixed;
             bottom: 2rem;
@@ -43,6 +43,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.15), -5px -5px 15px rgba(0,0,0,0.15);
             .nav-list {
                 list-style: none;
                 padding: 0;

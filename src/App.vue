@@ -46,6 +46,7 @@
   :root {
     --color-black: #1f1f1f;
     --color-black-light: #2b2b2b;
+    --color-black-dark: #141414;
     --color-white: #FFF;
     --color-primary: #e20b4c;
 
