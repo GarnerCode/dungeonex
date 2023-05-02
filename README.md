@@ -6,7 +6,7 @@
 
 Try out DungeoNex with the demo login!
 - demo@garnercode.io
--demo123
+- demo123
 
 ## Features
 
