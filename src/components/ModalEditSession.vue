@@ -23,6 +23,7 @@
     import { defineComponent } from 'vue';
     import { useGlobalStore } from '@/store/globalStore';
     import { ModalTypesEnum } from '@/enum/ModalTypes.enum';
+    import { Session } from '@/interfaces/Campaign.interface';
 
     export default defineComponent({
         name: 'ModalEditSession',
@@ -44,7 +45,7 @@
             async submitSessionEdit(e: any): Promise<void> {
                 e.preventDefault();
                 const activeCampaign = this.globalStore.getCampaignById(this.$route.params.id);
-                const updatedSessionsList = activeCampaign.sessionsList.filter((session: any) => {
+                const updatedSessionsList = activeCampaign.sessionsList.filter((session: Session) => {
                     return session.id !== this.updatedSession.id;
                 });
                 updatedSessionsList.push(this.updatedSession);

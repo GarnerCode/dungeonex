@@ -22,6 +22,7 @@
     import { defineComponent } from 'vue';
     import { useGlobalStore } from '@/store/globalStore';
     import { generateId } from '@/lib/utils';
+    import { Campaign } from '@/interfaces/Campaign.interface';
 
     export default defineComponent({
         name: 'ModalAddSession',
@@ -33,7 +34,7 @@
                     title: '',
                     summary: '',
                 },
-                activeCampaign: null as any,
+                activeCampaign: {} as Campaign,
             }
         },
         mounted() {
@@ -41,7 +42,6 @@
             if (campaign) {
                 this.activeCampaign = campaign;
             }
-            console.log('activeCampaign: ', this.activeCampaign);
         },
         methods: {
             async createSession(e: any): Promise<void> {

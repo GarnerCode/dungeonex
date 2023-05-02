@@ -23,9 +23,7 @@
             }
         },
         props: {
-            session: {
-                type: Object,
-            }
+            session: null,
         },
         methods: {
             handleEditSessionClick(): void {

@@ -36,6 +36,7 @@
     methods: {
       fetchAllData(): void {
         this.globalStore.fetchCampaigns();
+        this.globalStore.fetchCharacters();
       }
     }
   })
@@ -119,8 +120,32 @@
     .dash-view-header {
       text-align: center;
       font-size: 3rem;
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
       color: var(--color-white);
+    }
+    .dash-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .dash-list-no-items {
+      text-align: center;
+    }
+    .dash-list-loading {
+      text-align: center;
+    }
+    .dash-list-item {
+      display: flex;
+      flex-direction: row;
+      gap: 3rem;
+      background-color: var(--color-black-light);
+      padding: 1rem 2rem;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      .dash-list-item-title {
+        font-size: 2.5rem;
+        color: var(--color-white);
+      }
     }
     .button {
       display: block !important;

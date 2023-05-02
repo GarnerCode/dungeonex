@@ -13,6 +13,7 @@
     import { defineComponent } from 'vue';
     import { supabase } from '@/lib/supabaseClient';
     import { useGlobalStore } from '@/store/globalStore';
+    import { Session } from '@/interfaces/Campaign.interface';
 
     export default defineComponent({
         name: 'ModalDeleteSession',
@@ -25,7 +26,7 @@
             async handleDeleteSession(): Promise<void> {
                 const activeCampaign = this.globalStore.getCampaignById(this.$route.params.id);
                 const targetSession = this.globalStore.getTargetSession;
-                const filteredSessions = activeCampaign.sessionsList.filter((session: any) => {
+                const filteredSessions = activeCampaign.sessionsList.filter((session: Session) => {
                     return session.id !== targetSession.id
                 });
                 activeCampaign.sessionsList = filteredSessions;

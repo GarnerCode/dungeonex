@@ -5,15 +5,15 @@
             <font-awesome-icon :icon="['fas', 'plus']" />
         </button>
         <div class="dash-view-content">
-            <ul class="campaigns-list" v-if="globalStore.getCampaigns">
-                <li class="campaign-list-item" v-for="(campaign, id) of globalStore.getCampaigns" :key="id">
+            <ul class="dash-list" v-if="globalStore.getCampaigns">
+                <li class="dash-list-item-container" v-for="(campaign, id) of globalStore.getCampaigns" :key="id">
                     <CampaignSummary @click="navToCampaign(campaign.id)" :campaign="campaign"></CampaignSummary>
                 </li>
             </ul>
-            <h2 v-if="!globalStore.getCampaigns?.length && !globalStore.getLoadingCampaigns">
+            <h2 class="dash-list-no-items" v-if="!globalStore.getCampaigns?.length && !globalStore.getLoadingCampaigns">
                 No Campaigns
             </h2>
-            <div v-if="globalStore.getLoadingCampaigns">
+            <div class="dash-list-loading" v-if="globalStore.getLoadingCampaigns">
                 Loading
             </div>
         </div>
@@ -38,7 +38,7 @@
             CampaignSummary,
         },
         methods: {
-            navToCampaign(id: number): void {
+            navToCampaign(id: number | string | string[]): void {
                 this.$router.push(`/campaign-details/${id}`);
             }
         }
@@ -50,11 +50,6 @@
         .campaigns-view {
             h2 {
                 text-align: center;
-            }
-            .campaigns-list {
-                display: flex;
-                flex-direction: column;
-                gap: 2rem;
             }
         }
     }

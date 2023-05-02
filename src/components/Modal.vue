@@ -5,12 +5,16 @@
         </button>
         <div class="modal">
             <ModalConfirmSignup v-if="globalStore.getActiveModalType === modalTypes.SIGNUP_CONFIRMATION"></ModalConfirmSignup>
+
             <ModalAddCampaign v-if="globalStore.getActiveModalType === modalTypes.ADD_CAMPAIGN"></ModalAddCampaign>
             <ModalEditCampaign v-if="globalStore.getActiveModalType === modalTypes.EDIT_CAMPAIGN"></ModalEditCampaign>
             <ModalDeleteCampaign v-if="globalStore.getActiveModalType === modalTypes.DELETE_CAMPAIGN"></ModalDeleteCampaign>
+
             <ModalAddSession v-if="globalStore.getActiveModalType === modalTypes.ADD_SESSION"></ModalAddSession>
             <ModalEditSession v-if="globalStore.getActiveModalType === modalTypes.EDIT_SESSION"></ModalEditSession>
             <ModalDeleteSession v-if="globalStore.getActiveModalType === modalTypes.DELETE_SESSION"></ModalDeleteSession>
+
+            <ModalAddCharacter v-if="globalStore.getActiveModalType === modalTypes.ADD_CHARACTER"></ModalAddCharacter>
         </div>
     </div>
 </template>
@@ -19,14 +23,17 @@
     import { defineComponent } from 'vue';
     import { useGlobalStore } from '@/store/globalStore';
     import { ModalTypesEnum } from '@/enum/ModalTypes.enum';
-
     import ModalConfirmSignup from './ModalConfirmSignup.vue';
+
     import ModalAddCampaign from './ModalAddCampaign.vue';
     import ModalEditCampaign from './ModalEditCampaign.vue';
     import ModalDeleteCampaign from './ModalDeleteCampaign.vue';
+
     import ModalAddSession from './ModalAddSession.vue';
     import ModalEditSession from './ModalEditSession.vue';
     import ModalDeleteSession from './ModalDeleteSession.vue';
+
+    import ModalAddCharacter from './ModalAddCharacter.vue';
 
     export default defineComponent({
         name: 'Modal',
@@ -38,12 +45,16 @@
         },
         components: {
             ModalConfirmSignup,
+
             ModalAddCampaign,
             ModalEditCampaign,
             ModalDeleteCampaign,
+
             ModalAddSession,
             ModalEditSession,
             ModalDeleteSession,
+
+            ModalAddCharacter,
         },
     })
 </script>
@@ -69,6 +80,8 @@
                 border-radius: var(--border-radius);
                 color: var(--color-white);
                 width: 40rem;
+                overflow-y: scroll;
+                max-height: 60rem;
             }
         }
         .modal-title {

@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia';
 import { supabase } from '@/lib/supabaseClient';
+import { Campaign, Session } from '@/interfaces/Campaign.interface';
+import { Character } from '@/interfaces/Character.interface';
 
 export const useGlobalStore = defineStore({
     id: 'GlobalStore',
@@ -7,11 +9,12 @@ export const useGlobalStore = defineStore({
         userData: null,
         modalToggled: false,
         activeModalType: '',
-        campaigns: null as any,
+        campaigns: [] as Campaign[] | any,
+        characters: [] as Character[] | any,
         loadingCampaigns: true,
-        characters: null as any,
+        loadingCharacters: true,
 
-        targetSession: null as any,
+        targetSession: {} as Session,
     }),
     getters: {
         getUserData: (state): any => {
@@ -23,13 +26,19 @@ export const useGlobalStore = defineStore({
         getActiveModalType: (state): string => {
             return state.activeModalType;
         },
-        getCampaigns: (state): any => {
+        getCampaigns: (state): Campaign[] => {
             return state.campaigns;
+        },
+        getCharacters: (state): Character[] => {
+            return state.characters;
         },
         getLoadingCampaigns: (state): boolean => {
             return state.loadingCampaigns;
         },
-        getTargetSession: (state): any => {
+        getLoadingCharacters: (state): boolean => {
+            return state.loadingCharacters;
+        },
+        getTargetSession: (state): Session => {
             return state.targetSession;
         },
     },
@@ -50,7 +59,7 @@ export const useGlobalStore = defineStore({
                 return campaign.id == id;
             });
         },
-        setTargetSession(payload: any): void {
+        setTargetSession(payload: Session): void {
             this.targetSession = payload;
         },
         async fetchCampaigns(): Promise<void> {
@@ -61,7 +70,16 @@ export const useGlobalStore = defineStore({
             if (data) {
                 this.campaigns = data;
                 this.loadingCampaigns = false;
-                console.log('data: ', data);
+            }
+        },
+        async fetchCharacters(): Promise<void> {
+            const { data, error } = await supabase
+            .from('characters')
+            .select()
+            .eq('email', this.getUserData.email);
+            if (data) {
+                this.characters = data;
+                this.loadingCharacters = false;
             }
         }
     }

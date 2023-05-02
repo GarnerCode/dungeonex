@@ -1,0 +1,18 @@
+export interface Character {
+    id: number | string | string[],
+    created_at: string,
+    name: string,
+    race: string,
+    class: string,
+    level: number,
+    strength: number,
+    dexterity: number,
+    constitution: number,
+    intelligence: number,
+    wisdom: number,
+    charisma: number,
+    armorClass: number,
+    maxHp: number,
+    notes: string,
+    imageUrl: string,
+}

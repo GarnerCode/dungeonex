@@ -26,13 +26,14 @@
     import { useGlobalStore } from '@/store/globalStore';
     import { ModalTypesEnum } from '@/enum/ModalTypes.enum';
     import Session from '@/components/Session.vue';
+    import { Campaign } from '@/interfaces/Campaign.interface';
 
     export default defineComponent({
         name: 'CampaignDetailsView',
         data() {
             return {
                 globalStore: useGlobalStore(),
-                campaign: null as any,
+                campaign: {} as Campaign,
                 modalTypes: ModalTypesEnum,
             }
         },
@@ -56,12 +57,12 @@
         methods: {
             getSelectedCampaign(): void {
                 const campaignId = this.$route.params.id;
-                console.log('campaignId: ', campaignId);
-                console.log('campaigns list: ', this.globalStore.getCampaigns);
-                this.campaign = this.globalStore.getCampaigns.find((campaign: any) => {
+                const campaign = this.globalStore.getCampaigns.find((campaign: Campaign) => {
                     return campaign.id == campaignId;
                 });
-                console.log('campaign: ', this.campaign);
+                if (campaign) {
+                    this.campaign = campaign;
+                }
             }
         }
     })
