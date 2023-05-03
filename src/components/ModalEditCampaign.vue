@@ -13,7 +13,7 @@
             <div class="field">
                 <input class="button button-primary" type="submit" value="Update">
             </div>
-            <button @click="handleDeleteClick()" class="button button-secondary">Delete Campaign</button>
+            <button @click="globalStore.openModal(modalTypes.DELETE_CAMPAIGN)" class="button button-secondary">Delete Campaign</button>
         </form>
     </div>
 </template>
@@ -55,12 +55,10 @@
                     if (error) {
                         console.error(error);
                     } else {
+                        this.globalStore.fetchCampaigns();
                         this.globalStore.closeModal();
                     }
                 }
-            },
-            handleDeleteClick(): void {
-                this.globalStore.openModal(this.modalTypes.DELETE_CAMPAIGN);
             },
         }
     })

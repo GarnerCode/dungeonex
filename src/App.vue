@@ -13,12 +13,14 @@
   import { useGlobalStore } from './store/globalStore';
   import Modal from '@/components/Modal.vue';
   import { supabase } from '@/lib/supabaseClient';
+  import { StaticRoutesEnum } from './enum/StaticRoutes.enum';
 
   export default defineComponent({
     name: 'App',
     data() {
       return {
         globalStore: useGlobalStore(),
+        staticRoutes: StaticRoutesEnum,
       }
     },
     components: {
@@ -30,7 +32,7 @@
         this.globalStore.setUserData(session.user);
         this.fetchAllData();
       } else {
-        this.$router.push('/login');
+        this.$router.push(this.staticRoutes.LOGIN);
       }
     },
     methods: {
@@ -122,6 +124,12 @@
       font-size: 3rem;
       margin-bottom: 3rem;
       color: var(--color-white);
+    }
+    .panel {
+      background-color: var(--color-black-light);
+      color: var(--color-white);
+      border-radius: var(--border-radius);
+      padding: 2rem;
     }
     .dash-list {
       display: flex;

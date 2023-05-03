@@ -51,12 +51,14 @@
     import { defineComponent } from 'vue';
     import { useGlobalStore } from '@/store/globalStore';
     import { ModalTypesEnum } from '@/enum/ModalTypes.enum';
+    import { StaticRoutesEnum } from '@/enum/StaticRoutes.enum';
 
     export default defineComponent({
         name: 'LoginView',
         data() {
             return {
                 globalStore: useGlobalStore(),
+                staticRoutes: StaticRoutesEnum,
                 toggleSignup: false,
                 modalTypes: ModalTypesEnum,
                 loginFormData: {
@@ -76,7 +78,7 @@
             if (session) {
                 console.log('session: ', session);
                 this.globalStore.setUserData(session.user);
-                this.$router.push('/');
+                this.$router.push(this.staticRoutes.HOME);
             }
         },
         methods: {
@@ -91,7 +93,7 @@
                     });
                     if (data.session) {
                         this.globalStore.setUserData(data.session.user);
-                        this.$router.push('/');
+                        this.$router.push(this.staticRoutes.HOME);
                     } else if (error) {
                         this.supaErrorMsg = 'Email or Password is incorrect.';
                     }

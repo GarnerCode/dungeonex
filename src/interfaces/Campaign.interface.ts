@@ -8,6 +8,7 @@ export interface Campaign {
 
 export interface Session {
     id: number,
+    created_at: string,
     title: string,
     summary: string,
 }

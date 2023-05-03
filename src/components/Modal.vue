@@ -3,7 +3,7 @@
         <button @click="globalStore.closeModal()" class="dash-action-button button-secondary">
             <font-awesome-icon :icon="['fas', 'xmark']" />
         </button>
-        <div class="modal">
+        <div class="modal panel">
             <ModalConfirmSignup v-if="globalStore.getActiveModalType === modalTypes.SIGNUP_CONFIRMATION"></ModalConfirmSignup>
 
             <ModalAddCampaign v-if="globalStore.getActiveModalType === modalTypes.ADD_CAMPAIGN"></ModalAddCampaign>
@@ -15,6 +15,8 @@
             <ModalDeleteSession v-if="globalStore.getActiveModalType === modalTypes.DELETE_SESSION"></ModalDeleteSession>
 
             <ModalAddCharacter v-if="globalStore.getActiveModalType === modalTypes.ADD_CHARACTER"></ModalAddCharacter>
+            <ModalEditCharacter v-if="globalStore.getActiveModalType === modalTypes.EDIT_CHARACTER"></ModalEditCharacter>
+            <ModalDeleteCharacter v-if="globalStore.getActiveModalType === modalTypes.DELETE_CHARACTER"></ModalDeleteCharacter>
         </div>
     </div>
 </template>
@@ -34,6 +36,8 @@
     import ModalDeleteSession from './ModalDeleteSession.vue';
 
     import ModalAddCharacter from './ModalAddCharacter.vue';
+    import ModalEditCharacter from './ModalEditCharacter.vue';
+    import ModalDeleteCharacter from './ModalDeleteCharacter.vue';
 
     export default defineComponent({
         name: 'Modal',
@@ -55,6 +59,8 @@
             ModalDeleteSession,
 
             ModalAddCharacter,
+            ModalEditCharacter,
+            ModalDeleteCharacter,
         },
     })
 </script>
@@ -75,10 +81,6 @@
             justify-content: center;
             align-items: center;
             .modal {
-                background-color: var(--color-black-light);
-                padding: 2rem;
-                border-radius: var(--border-radius);
-                color: var(--color-white);
                 width: 40rem;
                 overflow-y: scroll;
                 max-height: 60rem;

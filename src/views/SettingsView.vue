@@ -10,19 +10,21 @@
     import { supabase } from '@/lib/supabaseClient';
     import { defineComponent } from 'vue';
     import { useGlobalStore } from '@/store/globalStore';
+    import { StaticRoutesEnum } from '@/enum/StaticRoutes.enum';
 
     export default defineComponent({
         name: 'SettingsView',
         data() {
             return {
                 globalStore: useGlobalStore(),
+                staticRoutes: StaticRoutesEnum,
             }
         },
         methods: {
             async handleSignout() {
                 const { error } = await supabase.auth.signOut();
                 this.globalStore.setUserData(null);
-                this.$router.push('/login');
+                this.$router.push(this.staticRoutes.LOGIN);
             }
         }
     })

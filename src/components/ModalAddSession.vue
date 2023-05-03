@@ -3,12 +3,16 @@
         <h2 class="modal-title">Add Session</h2>
         <form @submit="(e) => createSession(e)" class="modal-form">
             <div class="field">
-                <label for="campaignTitle">Title</label>
-                <input class="form-input" v-model="newSession.title" type="text" name="campaignTitle">
+                <label for="sessionTitle">Title</label>
+                <input class="form-input" v-model="newSession.title" type="text" name="sessionTitle">
             </div>
             <div class="field">
-                <label for="campaignSummary">Summary</label>
-                <textarea class="form-input form-textarea" v-model="newSession.summary" name="campaignSummary"></textarea>
+                <label for="sessionDate">Date</label>
+                <input class="form-input" v-model="newSession.created_at" type="date" name="sessionDate">
+            </div>
+            <div class="field">
+                <label for="sessionSummary">Summary</label>
+                <textarea class="form-input form-textarea" v-model="newSession.summary" name="sessionSummary"></textarea>
             </div>
             <div class="field">
                 <input class="button button-primary" type="submit" value="Submit">
@@ -31,6 +35,7 @@
                 globalStore: useGlobalStore(),
                 newSession: {
                     id: generateId(),
+                    created_at: '',
                     title: '',
                     summary: '',
                 },

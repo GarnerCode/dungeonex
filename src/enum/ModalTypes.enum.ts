@@ -10,4 +10,6 @@ export enum ModalTypesEnum {
     DELETE_SESSION = 'delete session',
     
     ADD_CHARACTER = 'add character',
+    EDIT_CHARACTER = 'edit character',
+    DELETE_CHARACTER = 'delete character',
 }

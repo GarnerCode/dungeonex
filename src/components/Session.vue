@@ -2,6 +2,7 @@
     <div class="session" v-if="session">
         <div class="session-header">
             <h3 class="session-title">{{ session.title }}</h3>
+            <div class="session-date">{{ session.created_at }}</div>
             <font-awesome-icon @click="handleEditSessionClick()" :icon="['fas', 'pen-to-square']" />
         </div>
         <hr>
@@ -44,6 +45,7 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
+                color: var(--color-white);
             }
             svg {
                 color: var(--color-white);

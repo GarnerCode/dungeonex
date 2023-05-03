@@ -59,6 +59,11 @@ export const useGlobalStore = defineStore({
                 return campaign.id == id;
             });
         },
+        getCharacterById(id: number | string | string[]): any {
+            return this.getCharacters.find((character: any) => {
+                return character.id == id;
+            });
+        },
         setTargetSession(payload: Session): void {
             this.targetSession = payload;
         },
