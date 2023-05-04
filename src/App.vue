@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="version">
-      Alpha 0.2
+      Alpha 0.75
     </div>
     <Modal v-if="globalStore.getModalToggled"></Modal>
     <router-view/>
@@ -40,6 +40,7 @@
         this.globalStore.fetchCampaigns();
         this.globalStore.fetchCharacters();
         this.globalStore.fetchInitiative();
+        this.globalStore.fetchMonstersList();
       }
     }
   })
@@ -130,6 +131,9 @@
     .p-st {
       padding: 2rem;
     }
+    .text-center {
+      text-align: center;
+    }
     .dash-view-header {
       text-align: center;
       font-size: 3rem;
@@ -164,6 +168,7 @@
       .dash-list-item-title {
         font-size: 2.5rem;
         color: var(--color-white);
+        width: 20rem;
       }
     }
     .fine {

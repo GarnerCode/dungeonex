@@ -76,7 +76,6 @@
         async mounted() {
             const { data: { session } } = await supabase.auth.getSession();
             if (session) {
-                console.log('session: ', session);
                 this.globalStore.setUserData(session.user);
                 this.$router.push(this.staticRoutes.HOME);
             }
@@ -84,15 +83,16 @@
         methods: {
             async handleLogin(e: any) {
                 e.preventDefault();
-                console.log('Running login');
                 if (this.loginFormData.email !== '' && this.loginFormData.password !== '') {
-                    console.log('Running if block');
                     const { data, error } = await supabase.auth.signInWithPassword({
                         email: this.loginFormData.email,
                         password: this.loginFormData.password
                     });
                     if (data.session) {
                         this.globalStore.setUserData(data.session.user);
+                        this.globalStore.fetchCampaigns();
+                        this.globalStore.fetchCharacters();
+                        this.globalStore.fetchInitiative();
                         this.$router.push(this.staticRoutes.HOME);
                     } else if (error) {
                         this.supaErrorMsg = 'Email or Password is incorrect.';

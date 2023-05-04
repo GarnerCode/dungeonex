@@ -20,6 +20,7 @@
 
             <ModalAddInitiative v-if="globalStore.getActiveModalType === modalTypes.ADD_INITIATIVE"></ModalAddInitiative>
             <ModalEditInitiative v-if="globalStore.getActiveModalType === modalTypes.EDIT_INITIATIVE"></ModalEditInitiative>
+            <ModalDeleteInitiative v-if="globalStore.getActiveModalType === modalTypes.DELETE_INITIATIVE"></ModalDeleteInitiative>
         </div>
     </div>
 </template>
@@ -44,6 +45,7 @@
 
     import ModalAddInitiative from './ModalAddInitiative.vue';
     import ModalEditInitiative from './ModalEditInitiative.vue';
+    import ModalDeleteInitiative from './ModalDeleteInitiative.vue';
 
     export default defineComponent({
         name: 'Modal',
@@ -70,6 +72,7 @@
 
             ModalAddInitiative,
             ModalEditInitiative,
+            ModalDeleteInitiative,
         },
     })
 </script>

@@ -24,6 +24,9 @@
             async handleSignout() {
                 const { error } = await supabase.auth.signOut();
                 this.globalStore.setUserData(null);
+                this.globalStore.setCampaigns([]);
+                this.globalStore.setCharacters([]);
+                this.globalStore.setInitiative([]);
                 this.$router.push(this.staticRoutes.LOGIN);
             }
         }

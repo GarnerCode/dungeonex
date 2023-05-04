@@ -110,8 +110,6 @@
             async createCharacter(e: any): Promise<void> {
                 e.preventDefault();
                 if (this.newCharacter.name.length && this.newCharacter.race.length && this.newCharacter.class.length) {
-                    // this.handleImageUpload(e);
-                    console.log('Creating character: ', this.newCharacter);
                     const { error } = await supabase
                     .from(this.supabaseNames.TABLE_CHARACTERS)
                     .insert(this.newCharacter);
@@ -123,22 +121,6 @@
                     }
                 }
             },
-            // async handleImageUpload(e: any): Promise<void> {
-            //     const file = e.target.characterImage.files[0];
-            //     const fileName = generateId();
-            //     const { data, error } = await supabase.storage
-            //     .from(this.supabaseNames.BUCKET_PUBLIC)
-            //     .upload(`${this.supabaseNames.STORAGE_CHARIMG}/${fileName}`, file, {
-            //         cacheControl: '3600',
-            //         upsert: false,
-            //     });
-            //     if (error) {
-            //         console.error(error);
-            //     } else if (data) {
-            //         console.log('File data: ', data);
-            //         this.newCharacter.imageUrl = data.path;
-            //     }
-            // },
         }
     })
 </script>

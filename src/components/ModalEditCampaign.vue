@@ -23,6 +23,7 @@
     import { defineComponent } from 'vue';
     import { useGlobalStore } from '@/store/globalStore';
     import { ModalTypesEnum } from '@/enum/ModalTypes.enum';
+    import { SupabaseNamesEnum } from '@/enum/SupabaseNames.enum';
 
     export default defineComponent({
         name: 'ModalEditCampaign',
@@ -31,11 +32,11 @@
                 globalStore: useGlobalStore(),
                 activeCampaign: null as any,
                 modalTypes: ModalTypesEnum,
+                supabaseNames: SupabaseNamesEnum,
             }
         },
         mounted() {
             const campaign = this.globalStore.getCampaignById(this.$route.params.id);
-            console.log('campaign: ', campaign);
             if (campaign) {
                 this.activeCampaign = campaign;
             }
@@ -46,7 +47,7 @@
                 const campaignId = this.$route.params.id
                 if (this.activeCampaign.title.length && this.activeCampaign.summary.length) {
                     const { error } = await supabase
-                    .from('campaigns')
+                    .from(this.supabaseNames.TABLE_CAMPAIGN)
                     .update({
                         title: this.activeCampaign.title,
                         summary: this.activeCampaign.summary

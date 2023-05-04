@@ -15,4 +15,5 @@ export enum ModalTypesEnum {
 
     ADD_INITIATIVE = 'add initiative',
     EDIT_INITIATIVE = 'edit initiative',
+    DELETE_INITIATIVE = 'delete initiative',
 }

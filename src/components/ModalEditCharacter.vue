@@ -58,10 +58,6 @@
                 <label for="notes">Notes</label>
                 <textarea v-model="updatedCharacter.notes" class="form-input form-textarea" name="notes"></textarea>
             </div>
-            <!-- <div class="field">
-                <label for="characterImage">Character Image</label>
-                <input name="characterImage" accept="image/*" type="file">
-            </div> -->
             <div class="field">
                 <input class="button button-primary" type="submit" value="Submit">
             </div>

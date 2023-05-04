@@ -22,6 +22,7 @@
     import { defineComponent } from 'vue';
     import { generateId } from '@/lib/utils';
     import { useGlobalStore } from '@/store/globalStore';
+    import { SupabaseNamesEnum } from '@/enum/SupabaseNames.enum';
 
     export default defineComponent({
         name: 'ModalAddCampaign',
@@ -31,7 +32,8 @@
                 newCampaign: {
                     title: '',
                     summary: '',
-                }
+                },
+                supabaseNames: SupabaseNamesEnum,
             }
         },
         methods: {
@@ -39,7 +41,7 @@
                 e.preventDefault();
                 if (this.newCampaign.title.length && this.newCampaign.summary.length) {
                     const { error } = await supabase
-                    .from('campaigns')
+                    .from(this.supabaseNames.TABLE_CAMPAIGN)
                     .insert({
                         id: generateId(),
                         email: this.globalStore.getUserData.email,
@@ -48,7 +50,6 @@
                         summary: this.newCampaign.summary,
                         sessionsList: [],
                     });
-                    console.log('ID example: ', generateId);
                     if (error) {
                         console.error(error);
                     } else {

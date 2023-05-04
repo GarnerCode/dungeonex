@@ -4,6 +4,7 @@ import { Campaign, Session } from '@/interfaces/Campaign.interface';
 import { Character } from '@/interfaces/Character.interface';
 import { InitiativeItem } from '@/interfaces/InitiativeItem.interface';
 import { SupabaseNamesEnum } from '@/enum/SupabaseNames.enum';
+import axios from 'axios';
 
 export const useGlobalStore = defineStore({
     id: 'GlobalStore',
@@ -17,9 +18,9 @@ export const useGlobalStore = defineStore({
         loadingCampaigns: true,
         loadingCharacters: true,
         loadingInitiative: true,
-
         targetSession: {} as Session,
         targetInitiativeId: 0 as number,
+        monstersList: [] as any,
     }),
     getters: {
         getUserData: (state): any => {
@@ -53,12 +54,24 @@ export const useGlobalStore = defineStore({
             return state.targetSession;
         },
         getTargetInitiativeId: (state): number => {
-            return state.targetInitiativeId
+            return state.targetInitiativeId;
         },
+        getMonstersList: (state): any => {
+            return state.monstersList;
+        }
     },
     actions: {
         setUserData(payload: any): void {
             this.userData = payload;
+        },
+        setCampaigns(payload: any): void {
+            this.campaigns = payload;
+        },
+        setCharacters(payload: any): void {
+            this.characters = payload;
+        },
+        setInitiative(payload: any): void {
+            this.initiative = payload;
         },
         openModal(modalType: string): void {
             this.activeModalType = modalType;
@@ -95,7 +108,7 @@ export const useGlobalStore = defineStore({
             .select()
             .eq('email', this.getUserData.email);
             if (data) {
-                this.campaigns = data;
+                this.setCampaigns(data);
                 this.loadingCampaigns = false;
             }
         },
@@ -105,7 +118,7 @@ export const useGlobalStore = defineStore({
             .select()
             .eq('email', this.getUserData.email);
             if (data) {
-                this.characters = data;
+                this.setCharacters(data);
                 this.loadingCharacters = false;
             }
         },
@@ -115,8 +128,19 @@ export const useGlobalStore = defineStore({
             .select()
             .eq('email', this.getUserData.email);
             if (data) {
-                this.initiative = data;
+                this.setInitiative(data);
                 this.loadingInitiative = false;
+            }
+        },
+        async fetchMonstersList(): Promise<void> {
+            try {
+                const response = await axios.get("https://www.dnd5eapi.co/api/monsters");
+                if (response) {
+                    this.monstersList = response.data.results;
+                }
+            }
+            catch (error) {
+                console.error(error);
             }
         },
     }

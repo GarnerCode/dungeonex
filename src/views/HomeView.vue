@@ -22,9 +22,6 @@
                 panelData: homePanelData,
             }
         },
-        mounted() {
-            console.log(this.globalStore.getUserData);
-        },
         methods: {
             handlePanelClick(label: string): void {
                 this.$router.push(`/${label.toLocaleLowerCase()}`);
