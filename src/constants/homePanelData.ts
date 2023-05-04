@@ -6,7 +6,7 @@ export const homePanelData = [
         label: 'Characters',
     },
     {
-        label: 'Encounters',
+        label: 'Initiative',
     },
     {
         label: 'Settings',

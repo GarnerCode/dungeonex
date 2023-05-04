@@ -45,13 +45,21 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
+                align-items: center;
                 color: var(--color-white);
             }
             svg {
                 color: var(--color-white);
+                cursor: pointer;
+                &:hover {
+                    color: var(--color-primary);
+                }
             }
             hr {
                 border: 1px solid var(--color-black);
+            }
+            .session-summary {
+                text-align: justify;
             }
         }
     }

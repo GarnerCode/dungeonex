@@ -39,6 +39,7 @@
       fetchAllData(): void {
         this.globalStore.fetchCampaigns();
         this.globalStore.fetchCharacters();
+        this.globalStore.fetchInitiative();
       }
     }
   })
@@ -61,6 +62,7 @@
   }
   html {
     overflow-x: hidden;
+    overflow-y: hidden;
     font-size: 62.5%;
     @media screen and (min-width: 112.5em) {
       font-size: 75%;
@@ -100,6 +102,15 @@
     list-style: none;
     padding: 0;
     margin: 0;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-black-dark);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
   }
   #app {
     background-color: var(--color-black);
@@ -155,6 +166,9 @@
         color: var(--color-white);
       }
     }
+    .fine {
+      font-size: 12px;
+    }
     .button {
       display: block !important;
       width: 100% !important;
@@ -206,6 +220,13 @@
       position: absolute;
       top: 2rem;
       right: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      svg {
+        font-size: 3rem;
+      }
     }
     .form-input {
       font-size: 16px;
@@ -217,8 +238,23 @@
         outline: none;
       }
     }
+    .form-select {
+      font-size: 16px;
+      background-color: var(--color-black);
+      width: 100%;
+      color: var(--color-white);
+      padding: 1rem 2rem;
+      border: none;
+      cursor: pointer;
+    }
     .error {
       color: red;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    .button {
+      width: 30rem !important;
+      margin: 0 auto;
     }
   }
 </style>

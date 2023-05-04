@@ -15,9 +15,9 @@ export const navData = [
         route: '/characters',
     },
     {
-        label: 'Encounters',
+        label: 'Initiative',
         icon: ['fas', 'skull'],
-        route: '/encounters',
+        route: '/initiative',
     },
     {
         label: 'Settings',

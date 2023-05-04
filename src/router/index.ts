@@ -4,7 +4,7 @@ import DashboardView from '@/views/DashboardView.vue'
 import HomeView from '@/views/HomeView.vue'
 import CampaignsView from '@/views/CampaignsView.vue'
 import CharactersView from '@/views/CharactersView.vue'
-import EncountersView from '@/views/EncountersView.vue'
+import InitiativeView from '@/views/InitiativeView.vue'
 import SettingsView from '@/views/SettingsView.vue'
 
 import CampaignDetailsView from '@/views/CampaignDetailsView.vue'
@@ -42,9 +42,9 @@ const routes: Array<RouteRecordRaw> = [
         component: CharactersView,
       },
       {
-        path: 'encounters',
-        name: 'encounters',
-        component: EncountersView,
+        path: 'initiative',
+        name: 'initiative',
+        component: InitiativeView,
       },
       {
         path: 'settings',

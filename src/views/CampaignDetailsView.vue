@@ -6,7 +6,7 @@
         </button>
         <div class="view-content">
             <div class="column">
-                <p>{{ campaign.summary }}</p>
+                <p class="campaign-summary">{{ campaign.summary }}</p>
             </div>
             <div class="column">
                 <h2 class="sessions-list-title">Sessions</h2>
@@ -71,6 +71,12 @@
 <style lang="scss">
     @media screen and (min-width: 0px) {
         .campaign-details-view {
+            .campaign-summary {
+                width: fit-content;
+                max-width: 100%;
+                margin: 16px auto;
+                text-align: justify;
+            }
             .sessions-list-title {
                 text-align: center;
                 margin-bottom: 2rem;
@@ -80,7 +86,7 @@
                 flex-direction: column;
                 gap: 2rem;
                 margin-top: 2rem;
-                overflow-y: scroll;
+                overflow-y: auto;
                 height: 58rem;
             }
         }

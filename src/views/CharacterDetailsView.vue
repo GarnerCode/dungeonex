@@ -150,6 +150,10 @@
                 flex-direction: column;
                 justify-content: space-evenly;
             }
+            .notes-container {
+                overflow-y: auto;
+                max-height: 25rem;
+            }
             .character-notes {
                 text-align: justify;
             }

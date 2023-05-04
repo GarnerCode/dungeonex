@@ -29,7 +29,16 @@
 </script>
 
 <style lang="scss">
-  @media screen and (min-width: 0px) {
-    
+  @media screen and (min-width: 768px) {
+    .dashboard-container {
+      padding-left: 24rem;
+      padding-right: 15rem
+    }
+  }
+  @media screen and (min-width: 1400px) {
+    .dashboard-container {
+      padding-left: 35rem;
+      padding-right: 26rem;
+    }
   }
 </style>

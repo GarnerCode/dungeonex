@@ -151,4 +151,11 @@
             }
         }
     }
+    @media screen and (min-width: 768px) {
+        .login-view {
+            .login-view-form {
+                max-width: 30rem;
+            }
+        }
+    }
 </style>

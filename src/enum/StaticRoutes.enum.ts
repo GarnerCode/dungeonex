@@ -3,6 +3,6 @@ export enum StaticRoutesEnum {
     LOGIN = '/login',
     CAMPAIGNS = '/campaigns',
     CHARACTERS = '/characters',
-    ENCOUNTERS = '/encounters',
+    INITIATIVE = '/initiative',
     SETTINGS = '/settings',
 }

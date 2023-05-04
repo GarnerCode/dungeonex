@@ -68,4 +68,17 @@
             }
         }
     }
+    @media screen and (min-width: 768px) {
+        nav {
+            top: 2rem;
+            left: 2rem;
+            height: calc(100vh - 8rem);
+            width: 5rem;
+            padding: 2rem 1rem;
+            .nav-list {
+                flex-direction: column;
+                height: 100%;
+            }
+        }
+    }
 </style>

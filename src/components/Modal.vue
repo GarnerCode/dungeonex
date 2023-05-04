@@ -17,6 +17,9 @@
             <ModalAddCharacter v-if="globalStore.getActiveModalType === modalTypes.ADD_CHARACTER"></ModalAddCharacter>
             <ModalEditCharacter v-if="globalStore.getActiveModalType === modalTypes.EDIT_CHARACTER"></ModalEditCharacter>
             <ModalDeleteCharacter v-if="globalStore.getActiveModalType === modalTypes.DELETE_CHARACTER"></ModalDeleteCharacter>
+
+            <ModalAddInitiative v-if="globalStore.getActiveModalType === modalTypes.ADD_INITIATIVE"></ModalAddInitiative>
+            <ModalEditInitiative v-if="globalStore.getActiveModalType === modalTypes.EDIT_INITIATIVE"></ModalEditInitiative>
         </div>
     </div>
 </template>
@@ -38,6 +41,9 @@
     import ModalAddCharacter from './ModalAddCharacter.vue';
     import ModalEditCharacter from './ModalEditCharacter.vue';
     import ModalDeleteCharacter from './ModalDeleteCharacter.vue';
+
+    import ModalAddInitiative from './ModalAddInitiative.vue';
+    import ModalEditInitiative from './ModalEditInitiative.vue';
 
     export default defineComponent({
         name: 'Modal',
@@ -61,6 +67,9 @@
             ModalAddCharacter,
             ModalEditCharacter,
             ModalDeleteCharacter,
+
+            ModalAddInitiative,
+            ModalEditInitiative,
         },
     })
 </script>
@@ -82,12 +91,13 @@
             align-items: center;
             .modal {
                 width: 40rem;
-                overflow-y: scroll;
+                overflow-y: auto;
                 max-height: 60rem;
             }
         }
         .modal-title {
             text-align: center;
+            margin-bottom: 2rem;
         }
         .modal-form {
             display: flex;
