@@ -1,8 +1,14 @@
 # DungeoNex
 ## Dungeons & Dragons Campaign Management Tool
-*Currently styled for mobile-view only*
+
+
 
 [Live App](https://dungeonex.vercel.app/login)
+
+## Technologies
+- Vue front-end framework
+- Supabase backend services
+- Pinia state management library
 
 ## Features
 
